@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine For You ❤️</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap" rel="stylesheet">
+    <style>
+        @keyframes floatUp { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
+        @keyframes heartbeat { 0%, 70%, 100% { transform: scale(1); } 14%, 42% { transform: scale(1.1); } }
+        .animate-float { position: absolute; bottom: -20px; animation: floatUp var(--d) linear forwards; }
+        .animate-heartbeat { animation: heartbeat 1.2s infinite; }
+        .font-bubble { font-family: 'Fredoka', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#fffbfc] overflow-hidden font-sans">
+    <div id="root" class="min-h-screen flex flex-col items-center justify-center p-4 relative">
+        <div id="card" class="w-full max-w-[340px] aspect-[2/3] p-8 text-center z-10 bg-white/80 backdrop-blur-sm rounded-[2.5rem] border-2 border-pink-100 shadow-xl flex flex-col justify-between">
+            <div id="content">
+                <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHZqYmpzbHc2NWZzbnp1ZG91YW5keG02eWtzeW1zaHl1YTR3dWx3OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/J6YVJWZh4J4IlYALlN/giphy.gif" class="w-32 h-32 mx-auto mb-4">
+                <h1 class="text-2xl font-bold text-pink-600 leading-tight">Vợ Có Muốn Nhận Quà Valentine Của anh khum? 🌹</h1>
+            </div>
+            
+            <div id="buttons" class="relative h-32 flex flex-col items-center">
+                <button onclick="accept()" class="absolute transition-all duration-200 bg-gray-200 text-gray-600 px-6 py-2 rounded-full font-bold mt-16">KHÔNG </button>
+                <button id="noBtn" onmouseover="moveBtn()" onclick="moveBtn()" ontouchstart="moveBtn()" class="bg-red-500 text-white px-10 py-3 rounded-full font-bold text-lg shadow-lg z-50">Có ❤️...</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Khởi tạo EmailJS
+        emailjs.init("oe5c1xsI78z8gyI5N");
+
+        function moveBtn() {
+            const btn = document.getElementById('noBtn');
+            const x = Math.random() * 70 + 15;
+            const y = Math.random() * 70 + 15;
+            btn.style.left = x + '%';
+            btn.style.top = y + '%';
+            btn.style.position = 'fixed';
+        }
+
+        function accept() {
+            // Gửi mail
+            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", { message: "Bé đã đồng ý rồi!" });
+            
+            // Đổi giao diện
+            document.getElementById('card').innerHTML = `
+                <div class="flex flex-col items-center justify-center h-full">
+               <iframe src="https://giphy.com/embed/GJWtNQDSAQ7u4Xnpj6" width="350" height="250" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/shibuyastation-reaction-love-emoji-GJWtNQDSAQ7u4Xnpj6"/a></p>
+                    <h2 class="text-3xl font-bold text-pink-600 animate-bounce">YÊÊÊ! ❤️</h2>
+                    <p class="text-gray-700 font-bold mt-4">Cảm Ơn EM Nhé Vì Đã Hiểu Cho Anh , Chừng Nào Anh Coá Tiền Sẽ Bù Đắp Cho EM Sau! 🙆‍♂️</p>
+                </div>
+            `;
+        }
+
+        // Tạo tim bay
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.className = 'animate-float';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.setProperty('--d', (Math.random() * 3 + 2) + 's');
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }, 400);
+    </script>
+</body>
+</html>
