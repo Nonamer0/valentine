@@ -60,7 +60,7 @@
         // Tạo tim bay
         setInterval(() => {
             const heart = document.createElement('div');
-            heart.innerHTML = '❤️';
+            heart.innerHTML = '💸';
             heart.className = 'animate-float';
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.setProperty('--d', (Math.random() * 3 + 2) + 's');
@@ -68,6 +68,18 @@
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), 5000);
         }, 400);
+    
+    setInterval(() => {
+            const heart = document.createElement('div');
+            heart.innerHTML = '💸';
+            heart.className = 'animate-float';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.setProperty('--d', (Math.random() * 3 + 2) + 's');
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }, 400);
+    
     </script>
 </body>
 </html>
